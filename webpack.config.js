@@ -15,7 +15,7 @@ module.exports={
         open:true,
         proxy:{
             '/bus':{
-                target:'http://127.0.0.1:3001/',
+                target:'http://139.186.77.25:3001/',
                 pathRewrite: {'^/bus' : '/bus'},
                 changeOrigin:true,
                 secure:true
