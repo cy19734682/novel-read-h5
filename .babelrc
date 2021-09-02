@@ -1,0 +1,15 @@
+{
+    "presets": [
+        ["env", {
+            "modules": false ,
+            "useBuiltIns": "usage",
+            "targets": {
+                "browsers": ["safari >= 7", "chrome >= 49", "Firefox > 50"],
+                "uglify": true
+            }
+        }],
+        "stage-2"
+    ],
+    "comments": false
+}
+
