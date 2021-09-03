@@ -84,9 +84,9 @@
           let params ={
             username:this.username,
             password:e,
-            captcha:this.captcha,
+            captcha:this.captcha
           }
-          userLogin(params).then(res => {
+          userLogin(params,{isEuc:true}).then(res => {
             if (res && res.code === 0) {
               let userInfo = res.data[0]
               sessionStorage.setItem("userInfo", JSON.stringify(userInfo));

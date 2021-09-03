@@ -1,6 +1,18 @@
 const UglifyJsPlugin = require('uglifyjs-webpack-plugin')
 module.exports = {
   productionSourceMap:process.env.NODE_ENV !== 'development',
+  devServer: {
+    inline: true,//实时刷新
+    open:true,
+    proxy:{
+      '/bus':{
+        target:'http://139.186.77.25:3001/',
+        pathRewrite: {'^/bus' : '/bus'},
+        changeOrigin:true,
+        secure:true
+      }
+    }
+  },
   chainWebpack: config => {
     // ============路由懒加载不生效问题 start============
     config.plugins.delete('preload')

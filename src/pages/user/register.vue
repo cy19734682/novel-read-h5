@@ -144,7 +144,7 @@
             sex: this.sex,
             captcha: this.captcha,
           }
-          userRegister(params).then(res => {
+          userRegister(params,{isEuc:true}).then(res => {
             if (res && res.code === 0) {
               this.$toast.success("注册成功！");
               this.back()

@@ -2,7 +2,7 @@
   <div>
     <van-popup v-model="show" position="left" :style="{height:'100%',width:'80%'}">
       <div v-if="userInfo.id">
-        <p class="myBook col-12">{{userInfo.username}}的书架</p>
+        <p class="myBook col-12">{{userInfo.username}}的书架 <span style="color: #007bff;float: right;font-size: 14px;" @click="loginOut">注销</span></p>
         <div v-if="bookshelf && bookshelf.length">
           <van-card v-for="(item,index) in bookshelf" :key="index" @click="read(item)">
             <h3 slot="title">{{ item.title }}</h3>
@@ -34,7 +34,7 @@
 </template>
 
 <script>
-  import {userBookShelf, deleteBookShelf} from "../service/commService"
+  import {userBookShelf, deleteBookShelf,userLoginOut} from "../service/commService"
   export default {
     data() {
       return {
@@ -82,6 +82,19 @@
         }, err => {
           console.log(err)
           this.loadEnd = true
+        })
+      },
+      loginOut() {
+        userLoginOut().then(res => {
+          if (res && res.code === 0) {
+            this.show = false
+            sessionStorage.removeItem("userInfo")
+            this.userInfo = {}
+            this.bookshelf = []
+            this.$toast.success("注销成功");
+          }
+        }, err => {
+          console.log(err)
         })
       }
     }
