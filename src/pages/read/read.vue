@@ -72,7 +72,7 @@
       }
     },
     mounted() {
-      // this.chapterDetail();//查询章节详情
+      this.onLoad();//查询章节详情
       this.queryChapterList();//查询章节列表
     },
     methods: {
