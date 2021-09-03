@@ -12,11 +12,9 @@
           <h5 slot="title">{{ book.title }}</h5>
           <p slot="desc">{{ book.author }}</p>
           <div slot="tags">
-            <van-tag
-                v-if="book && book.tag" plain type="danger" v-for="(item,index) in book.tag && book.tag.split(',')"
-                :key="index"
-            >{{item}}
-            </van-tag>
+            <div  v-if="book && book.tag">
+              <van-tag plain type="danger" v-for="(item,index) in book.tag && book.tag.split(',')" :key="index">{{item}}</van-tag>
+            </div>
             <p>{{book.categoryName}} {{book.word | numFormat}}字</p>
             <p>{{book.serialize === 1?'连载中':'已完结'}}</p>
           </div>
@@ -76,6 +74,7 @@
             this.loading = false
           }
         }, err => {
+          console.log(err)
         })
       },
       addToBookshelf() {
@@ -94,6 +93,7 @@
             }
             this.followLoading = false
           }, err => {
+            console.log(err)
             this.followLoading = false
           })
         }else{
@@ -106,6 +106,7 @@
             }
             this.followLoading = false
           }, err => {
+            console.log(err)
             this.followLoading = false
           })
         }
@@ -145,6 +146,7 @@
           }
           this.readLoading = false
         }, err => {
+          console.log(err)
           this.readLoading = false
         })
       },

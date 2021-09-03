@@ -34,7 +34,7 @@
             <van-icon name="arrow"/>
           </span>
         </div>
-        <div>
+        <div class="bookDetail">
           <van-card v-for="(item,index) in recommend2" :key="index" @click="toRecommend(item)">
             <p class="title" slot="title">{{ item.bookName }}</p>
             <p class="desc" slot="desc">{{ item.content }}</p>
@@ -91,6 +91,7 @@
             this.bannerList = res.data
           }
         }, err => {
+          console.log(err)
         })
       },
       queryRecommendList() {
@@ -103,11 +104,8 @@
             this.recommend2 = res[1].data
             this.loading = false
           }
-          else {
-
-          }
-        }).catch(() => {
-
+        }).catch((e) => {
+          console.log(e)
         })
       }
     }
@@ -120,7 +118,6 @@
     flex-direction: column;
     justify-content: flex-start;
   }
-
   .bookName {
     line-height: 18px;
     font-size: 12px;
@@ -129,17 +126,14 @@
     display: inline-block;
     color: black;
   }
-
   .topic_bar {
     display: flex;
   }
-
   .topic {
     font-size: 15px;
     font-weight: 600;
     padding: 10px 15px 0 15px;
   }
-
   .more {
     display: flex;
     line-height: 24px;
@@ -148,58 +142,13 @@
     align-items: center;
     color: #999;
   }
-
   .bg {
     background-color: whitesmoke;
     padding-bottom: 1px;
   }
-
   .col-12 >>> .van-tabs__wrap {
     margin-bottom: 10px;
   }
-
-  .van-card {
-    background-color: #fff;
-    border-bottom: 1px solid #f5f7fa;
-    height: 125px;
-  }
-
-  .ifo {
-    display: flex;
-    justify-content: space-between;
-  }
-
-  .title {
-    font-weight: 600;
-    font-size: 14px;
-    margin-bottom: 5px;
-    color: black;
-  }
-
-  .desc {
-    color: #999;
-    margin-bottom: 5px;
-    font-size: 12px;
-    line-height: 20px;
-    max-height: 60px;
-    overflow: hidden;
-    text-overflow: ellipsis;
-  }
-
-  .author {
-    color: #999;
-    font-size: 12px;
-    display: flex;
-    align-items: center;
-    white-space: nowrap;
-    max-width: 80px;
-    text-overflow: ellipsis;
-  }
-
-  .van-image {
-    box-shadow: 0 1px 6px rgba(0, 0, 0, .35), 0 0 5px #f9f2e9 inset;
-  }
-
   .footer {
     display: flex;
     align-items: center;

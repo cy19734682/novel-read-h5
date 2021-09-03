@@ -30,8 +30,7 @@
     },
     props: {
       comment: null,
-      commentChildren: null,
-      temp: false
+      commentChildren: null
     },
     methods: {
       replyChild(item) {

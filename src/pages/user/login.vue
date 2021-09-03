@@ -60,7 +60,7 @@
     data() {
       return {
         loading:false,
-        imgCodeUrl:server+'/bus/getCaptcha',
+        imgCodeUrl:this.server+'/bus/getCaptcha',
         username: '',
         password: '',
         captcha: '',
@@ -98,6 +98,7 @@
             }
             this.loading = false
           }, err => {
+            console.log(err)
             this.loading = false
             this.captcha = ""
             this.getImgUrls()
@@ -111,6 +112,7 @@
             callback(aesVal)
           }
         }, err => {
+          console.log(err)
         })
       },
       encrypt(word,key){
@@ -119,7 +121,7 @@
         return encryptor.encrypt(word)  // 对内容进行加密
       },
       getImgUrls(){
-        this.imgCodeUrl =server+'/bus/getCaptcha?'+Math.random();
+        this.imgCodeUrl =this.server+'/bus/getCaptcha?'+Math.random();
       },
       onPassword(){ //点击切换密码的type类型
         this.isPassword =  this.isPassword==='password'?'text':'password'

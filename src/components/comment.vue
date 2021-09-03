@@ -72,6 +72,7 @@ export default {
           this.commentList = res.data
         }
       }, err => {
+        console.log(err)
       })
     },
     //点击了回复
@@ -112,6 +113,7 @@ export default {
           this.$toast.fail(res.msg);
         }
       }, err => {
+        console.log(err)
       })
     }
   },

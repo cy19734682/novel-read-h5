@@ -90,6 +90,7 @@
           }
           this.skLoading = false
         }, err => {
+          console.log(err)
         })
       },
       onRefresh() {//下拉刷新

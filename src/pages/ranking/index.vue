@@ -15,20 +15,22 @@
             finished-text="没有更多了"
             @load="onLoad"
         >
-          <van-card v-for="(item,index) in bookList" :key="index" @click="toPage(item)">
-            <p slot="title" class="title">{{ item.title }}</p>
-            <p slot="desc" class="desc">{{item.content}}</p>
-            <div slot="tags" class="ifo">
-              <span class="author"><van-icon name="contact"/>{{ item.author }}</span>
-              <div>
-                <van-tag plain>{{item.categoryName}}</van-tag>
-                <van-tag plain type="primary">{{item.word | numFormat}}万字</van-tag>
+          <div class="bookDetail">
+            <van-card v-for="(item,index) in bookList" :key="index" @click="toPage(item)">
+              <p slot="title" class="title">{{ item.title }}</p>
+              <p slot="desc" class="desc">{{item.content}}</p>
+              <div slot="tags" class="ifo">
+                <span class="author"><van-icon name="contact"/>{{ item.author }}</span>
+                <div>
+                  <van-tag plain>{{item.categoryName}}</van-tag>
+                  <van-tag plain type="primary">{{item.word | numFormat}}万字</van-tag>
+                </div>
               </div>
-            </div>
-            <van-image
-                style=" height:110px;width:80px" :src="serverImg+item.pic_id+item.suffix" fit="fill" slot="thumb"
-            ></van-image>
-          </van-card>
+              <van-image
+                  style=" height:110px;width:80px" :src="serverImg+item.pic_id+item.suffix" fit="fill" slot="thumb"
+              ></van-image>
+            </van-card>
+          </div>
         </van-list>
       </van-pull-refresh>
       <van-empty v-show="!(bookList && bookList.length) && isLoadEnd" description="暂无数据" />
@@ -105,6 +107,7 @@
           }
           this.loading = false;
         }, err => {
+          console.log(err)
           this.isLoadEnd = true
         })
       },
@@ -147,6 +150,7 @@
             this.selectChild(this.categoryList)
           }
         }, err => {
+          console.log(err)
         })
       },
       selectChild(items) {
@@ -154,7 +158,7 @@
         items.forEach(e => {
           e.textName = e.text||e.title
           e.text = e.title
-          if (e.hasOwnProperty("children")) {
+          if (Object.prototype.hasOwnProperty.call(e, 'children')) {
             e.children.unshift({
               id: e.id,
               text: e.title,
@@ -177,52 +181,12 @@
     align-items: center;
     margin: 10px 0;
   }
-
   .van-tree-select__item {
     font-weight: initial;
   }
-
   .top p {
     margin: 0;
     padding-left: 20px;
-  }
-
-  .van-card {
-    background-color: #fff;
-    border-bottom: 1px solid #f5f7fa;
-    height: 125px;
-  }
-
-  .ifo {
-    display: flex;
-    justify-content: space-between;
-  }
-
-  .title {
-    font-weight: 600;
-    font-size: 14px;
-    margin-bottom: 8px;
-  }
-
-  .desc {
-    color: #999;
-    margin-bottom: 5px;
-    font-size: 12px;
-    line-height: 20px;
-    max-height: 60px;
-    overflow: hidden;
-    text-overflow: ellipsis;
-  }
-
-  .author {
-    color: #999;
-    font-size: 12px;
-    display: flex;
-    align-items: center;
-  }
-
-  .van-image {
-    box-shadow: 0 1px 6px rgba(0, 0, 0, .35), 0 0 5px #f9f2e9 inset;
   }
   .more {
     display: flex;

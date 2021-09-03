@@ -11,6 +11,6 @@
     - 7、夜间模式
     - 8、目录
 ## 四.运行说明：
-      npm run dev
+      npm run serve
 ## 五.打包说明
       npm run build

@@ -68,6 +68,7 @@
             this.$toast.fail(res.msg);
           }
         }, err => {
+          console.log(err)
         })
       },
       checkBookshelf() {
@@ -79,6 +80,7 @@
           }
           this.loadEnd = true
         }, err => {
+          console.log(err)
           this.loadEnd = true
         })
       }

@@ -5,15 +5,15 @@ import Vue from 'vue'
 import VueRouter from 'vue-router'
 
 //导入自定义的vue组件
-import Index from './pages/index/index.vue'
-import Recommended from './pages/recommend/index.vue'
-import Search from './pages/search/index.vue'
-import Ranking from './pages/ranking/index.vue'
-import ReadIndex from './pages/read/index.vue'
-import ReadDirectory from './pages/read/directory.vue'
-import Read from './pages/read/read.vue'
-import Login from './pages/user/login.vue'
-import Register from './pages/user/register.vue'
+const Index = ()=>import("./pages/index/index.vue")
+const Recommended = ()=>import("./pages/recommend/index.vue")
+const Search = ()=>import("./pages/search/index.vue")
+const Ranking = ()=>import("./pages/ranking/index.vue")
+const ReadIndex = ()=>import("./pages/read/index.vue")
+const ReadDirectory = ()=>import("./pages/read/directory.vue")
+const Read = ()=>import("./pages/read/read.vue")
+const Login = ()=>import("./pages/user/login.vue")
+const Register = ()=>import("./pages/user/register.vue")
 
 //手动安装vue-router
 Vue.use(VueRouter)

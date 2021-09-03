@@ -4,7 +4,7 @@ import 'vant/lib/index.css';
 import './assets/css/common.css';
 //导入vue
 import Vue from 'vue'
-import App from './app.vue'
+import App from './App.vue'
 //导入路由
 import router from './router.js'
 // 创建vuex
@@ -23,7 +23,7 @@ window.server = config.global.server;
 
 Vue.use(Vant);
 
-var vm=new Vue({
+new Vue({
     el:'#app',
     store,
     render:c => c(App),

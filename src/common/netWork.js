@@ -1,6 +1,8 @@
 import axios from './http'
 //配置引入赋值
 var configuration = {};
+var params = {};
+var optParams = {};
 //是否字符串
 const isString = o => Object.prototype.toString.call(o).slice(8, -1) === 'String'
 //是否数字
@@ -48,25 +50,24 @@ const getConfig = (config) => {
   }
 }
 //公共http信息
-const GetParam = (configuration) => {
-  this.params = {};
-  this.optParams = {};
-  this.configuration = configuration;
+const GetParam = () => {
+  params = {};
+  optParams = {};
 }
 GetParam.prototype.setParams = (key, value) => {
-  this.params[key] = value;
+  params[key] = value;
 }
 GetParam.prototype.setOptParams = (key, value) => {
-  this.optParams[key] = value;
+  optParams[key] = value;
 }
 GetParam.prototype.getParams = () => {
-  return this.params;
+  return params;
 }
 GetParam.prototype.getOptParams = () => {
-  return this.optParams;
+  return optParams;
 }
 GetParam.prototype.getConfig = () => {
-  return this.configuration;
+  return configuration;
 }
 //检测url是否存在
 GetParam.prototype.checkUrl = (option) => {
@@ -153,7 +154,7 @@ GetParam.prototype.checkHttp = (reqParamVo, option) => {
  * 入参: reqParamVo:请求对象
  */
 const invoke = (reqParamVo, option) => {
-  const getParam = new GetParam(configuration);
+  const getParam = new GetParam();
   getParam.checkOptions(option)
   getParam.checkHttp(reqParamVo, option)
   if(getParam.getParams().method === 'get'){

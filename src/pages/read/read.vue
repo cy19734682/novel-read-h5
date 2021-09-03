@@ -47,12 +47,12 @@
 </template>
 
 <script>
-  import {queryChapter, queryChapterDetail,queryChapterPreOrNext} from '../../service/commService'
+  import {queryChapter,queryChapterPreOrNext} from '../../service/commService'
 
   export default {
     data() {
       return {
-        isShwNight: localStorage.getItem("isShwNight") || false,//是否显示黑夜模式
+        isShwNight: localStorage.getItem("isShwNight")==="true" || false,//是否显示黑夜模式
         chapterId: this.$route.params.id,//章节ID
         bookId: this.$route.query.bookId,//书籍ID
         bookName: this.$route.query.bookName,//书籍名称
@@ -96,6 +96,7 @@
             this.loadingX = false;
           }
         }, err => {
+          console.log(err)
         })
       },
       onLoad() {
@@ -133,9 +134,8 @@
             this.isLoading = false
             this.loading = false
           }
-          else {
-          }
         }, err => {
+          console.log(err)
         })
       },
       onRefresh() {
@@ -154,7 +154,7 @@
       },
       switchNight(){
         this.isShwNight = !this.isShwNight
-        localStorage.setItem("isShwNight",this.isShwNight)
+        localStorage.setItem("isShwNight",String(this.isShwNight))
       },
       saveReadHistory(){
         let historyReadBook =  localStorage.getItem("historyReadBook");
