@@ -74,6 +74,11 @@
       checkBookshelf() {
         this.show = true
         this.loadEnd = false
+        this.userInfo = JSON.parse(sessionStorage.getItem("userInfo")) || {}
+        if(JSON.stringify(this.userInfo) === "{}"){
+          this.bookshelf = []
+          return
+        }
         userBookShelf({userId:this.userInfo.id}).then(res => {
           if (res && res.code === 0) {
             this.bookshelf = res.data

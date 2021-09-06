@@ -1,3 +1,6 @@
+var Vue = require("vue")
+var Router  = require("../router.js")
+var Store  = require("../store.js")
 var configDerivation = {
   global:{}
 }
@@ -14,6 +17,16 @@ module.exports = {
     requestAfter:function(data){//接口请求后拦截
       if(data.data.code === -999){
         sessionStorage.removeItem("userInfo")
+       Vue.default.prototype.$dialog.confirm({
+         title: '系统提示',
+         message: '登录超时,是否重新登录?',
+         confirmButtonText:"登录",
+       }).then(()=>{
+         Router.default.push({ name: "login"})//跳转登录页面
+       })
+       .catch(() => {
+         Store.default.commit('updateReload');//刷新页面
+       });
         return false;
       }else{
         return true;

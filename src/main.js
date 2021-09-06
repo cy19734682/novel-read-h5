@@ -1,10 +1,10 @@
+//导入vue
+import Vue from 'vue'
+import App from './App.vue'
 //导入vant
 import Vant from 'vant';
 import 'vant/lib/index.css';
 import './assets/css/common.css';
-//导入vue
-import Vue from 'vue'
-import App from './App.vue'
 //导入路由
 import router from './router.js'
 // 创建vuex
