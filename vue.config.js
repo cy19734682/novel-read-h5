@@ -6,7 +6,7 @@ module.exports = {
     open:true,
     proxy:{
       '/bus':{
-        target:'http://139.186.77.25:3001/',
+        target:'http://139.186.77.25:8081/',
         pathRewrite: {'^/bus' : '/bus'},
         changeOrigin:true,
         secure:true
