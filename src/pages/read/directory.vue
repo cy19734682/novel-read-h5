@@ -36,6 +36,7 @@
   import {queryChapter} from '../../service/commService'
 
   export default {
+    name:"chapterList",
     data() {
       return {
         skLoading: true,

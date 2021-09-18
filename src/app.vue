@@ -44,6 +44,7 @@
     position: absolute;
     left:0;
     width: 100%;
+    overflow-y: auto;
   }
   .v-enter, .v-leave-to {
     opacity: 0;

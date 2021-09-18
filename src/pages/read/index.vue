@@ -47,6 +47,7 @@
   import {queryBook, addBookShelf, deleteBookShelf, queryChapter} from '../../service/commService'
   import Comment from "../../components/comment.vue"
   export default {
+    name:"book",
     components: {
       Comment
     },
