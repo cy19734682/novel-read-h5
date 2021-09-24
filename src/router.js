@@ -22,6 +22,7 @@ Vue.use(VueRouter)
 var router=new VueRouter({
     routes:[
         { path:'/',component:Index },
+        { path:'/index',component:Index },
         { path:'/login',name:'login',component:Login },
         { path:'/register',name:'register',component:Register },
         { path:'/recommend',name:"recommend",component:Recommended },
@@ -31,6 +32,21 @@ var router=new VueRouter({
         { path:'/chapter/list/:id',name:'chapterList',component:ReadDirectory },
         { path:'/chapter/:id',name:'chapter',component:Read }
     ]
+})
+
+router.beforeEach((to, from, next) => {
+    to = to || {};
+    from = from || {};
+    //把当前页和上一页的页面数据缓存下来
+    let curPage = {meta:to.meta,path:to.path,name:to.name,params:to.params,query:to.query};
+    let prePage = {meta:from.meta,path:from.path,name:from.name,params:from.params,query:from.query};
+    sessionStorage.setItem("_curPage",JSON.stringify(curPage));
+    sessionStorage.setItem("_prePage",JSON.stringify(prePage));
+    //把第一次进入项目的页面保存下来，用于页面后退的时候判断是否是最后一页并且不是首页
+    if(!sessionStorage.getItem('firstPage')){
+        sessionStorage.setItem("firstPage",to.path);
+    }
+    next()
 })
 
 export default router

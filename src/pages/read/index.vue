@@ -5,7 +5,11 @@
         left-arrow
         @click-left="back"
         fixed
-    />
+    >
+      <template #right>
+        <van-icon name="share-o" size="18" @click="onShare"/>
+      </template>
+    </van-nav-bar>
     <van-skeleton title :row="15" :loading="loading">
       <div class="col-12 ifo_box">
         <van-card>
@@ -40,16 +44,19 @@
         <van-goods-action-button type="info" :loading="readLoading" text="立即阅读" @click="readBook"/>
       </van-goods-action>
     </van-skeleton>
+    <nativeShare ref="shareRef"/>
   </div>
 </template>
 
 <script>
   import {queryBook, addBookShelf, deleteBookShelf, queryChapter} from '../../service/commService'
   import Comment from "../../components/comment.vue"
+  import nativeShare from '../../components/nativeShare.vue'
   export default {
     name:"book",
     components: {
-      Comment
+      Comment,
+      nativeShare
     },
     data() {
       return {
@@ -69,7 +76,7 @@
     methods: {
       queryBookDetail() {
         queryBook({id: this.bookId,userId:this.userInfo.id}).then(res => {
-          if (res && res.code === 0 && res.data) {
+          if (res && res.code === 0 && res.data && res.data.length) {
             this.book = res.data[0]
             this.isFollow = !!this.book.fid
             this.loading = false
@@ -151,8 +158,16 @@
           this.readLoading = false
         })
       },
+      onShare(){
+        let config = {
+          title:this.book.title+'-'+this.book.author,
+          img:this.serverImg+this.book.pic_id+this.book.suffix,
+          desc:this.book.content && this.book.content.slice(0,100)+"..." || "精彩不容错过！"
+        }
+        this.$refs.shareRef.initNativeShare(config);
+      },
       back() {
-        this.$router.go(-1)
+        this.pageBack()
       },
     }
   }

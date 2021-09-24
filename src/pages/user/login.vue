@@ -127,7 +127,7 @@
         this.isPassword =  this.isPassword==='password'?'text':'password'
       },
       back(){
-        this.$router.go(-1)
+        this.pageBack()
       }
     }
 

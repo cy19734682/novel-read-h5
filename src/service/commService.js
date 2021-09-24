@@ -148,6 +148,15 @@ export const userBookShelf = (params,option) => {
     return baseService(paraMap,opt);
 }
 /**
+ * 用户阅读状态
+ */
+export const userReadStatus = (params,option) => {
+    let paraMap = params || {};
+    let opt = option || {};
+    opt.url = config.global.server + "/bus/userReadStatus";
+    return baseService(paraMap,opt);
+}
+/**
  * 添加到书架
  */
 export const addBookShelf = (params,option) => {

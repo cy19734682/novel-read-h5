@@ -182,7 +182,7 @@
         this.imgCodeUrl = this.server + '/bus/getCaptcha?' + Math.random();
       },
       back() {
-        this.$router.go(-1)
+        this.pageBack()
       }
     }
 

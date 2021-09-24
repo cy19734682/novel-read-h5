@@ -117,6 +117,7 @@
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
+    padding: 10px 8px;
   }
   .bookName {
     line-height: 18px;
@@ -125,6 +126,7 @@
     text-align: center;
     display: inline-block;
     color: black;
+    margin-top: 3px;
   }
   .topic_bar {
     display: flex;

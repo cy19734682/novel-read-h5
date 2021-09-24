@@ -68,7 +68,7 @@ export default {
   methods: {
     queryCommentList() {
       queryComment({novelId: this.bookId}).then(res => {
-        if (res && res.code === 0 && res.data) {
+        if (res && res.code === 0 && res.data && res.data.length) {
           this.commentList = res.data
         }
       }, err => {

@@ -141,7 +141,7 @@
       },
       queryCategoryList() {
         queryCategory().then(res => {
-          if (res && res.code === 0 && res.data) {
+          if (res && res.code === 0 && res.data && res.data.length) {
             this.categoryList = res.data
             this.categoryList.unshift({
               id: null,
@@ -169,7 +169,7 @@
         })
       },
       back() {
-        this.$router.go(-1)
+        this.pageBack()
       },
     }
   }

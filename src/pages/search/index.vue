@@ -110,7 +110,7 @@
           current: this.current,
           size: this.size
         }).then(res => {
-          if (res && res.code === 0 && res.data) {
+          if (res && res.code === 0 && res.data && res.data.length) {
             if (this.refreshing) {
               this.bookList = [];
               this.refreshing = false;
@@ -194,7 +194,7 @@
         }
       },
       back() {
-        this.$router.go(-1)
+        this.pageBack()
       },
     }
   }

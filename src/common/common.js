@@ -4,6 +4,7 @@
 'use strict'
 
 import Vue from 'vue'
+var Router  = require("../router.js")
 
 
 /**
@@ -70,3 +71,18 @@ Vue.filter('formatTime',
       }
   }
 );
+
+ let pageBack = (index) => {
+  index = index || 1;
+  let currentPath = Router.default.history.current.path;
+  let firstPage = sessionStorage.getItem('firstPage');
+  if (firstPage === currentPath) {
+    if(currentPath !== '/' && currentPath !== '/index'){//当前页面不是首页，回到首页
+      Router.default.push({path:'/'})
+    }
+    return false
+  } else {
+    Router.default.go(-index)
+  }
+}
+Vue.prototype.pageBack = pageBack
