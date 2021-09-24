@@ -84,7 +84,7 @@
       </van-list>
     </van-pull-refresh>
     <div class="loadEndIng" v-show="loadEnd">
-      <van-loading size="24" color="#999" vertical>加载中...</van-loading>
+      <van-loading size="24" color="#333333" vertical>加载中...</van-loading>
     </div>
     <nativeShare ref="shareRef"/>
   </div>
