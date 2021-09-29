@@ -18,6 +18,13 @@
           <p>朋友圈</p>
         </a>
         <a
+            href="javascript:;" data-app="QQ" class="nativeShare qq" v-if="!isWeixin && (isqqBrowser || isucBrowser)"
+            @click="shareBindEvent(4)"
+        >
+          <span class="sp5"><img src="../assets/img/icon/qq.png" alt=""/></span>
+          <p>QQ好友</p>
+        </a>
+        <a
             href="javascript:;" data-app="sinaWeibo" class="nativeShare webweibo" v-if="!isqqApp && !isWeixin"
             @click="shareBindEvent(2)"
         >
@@ -27,13 +34,6 @@
         <a href="javascript:;" data-app="QZone" class="nativeShare webqzone" @click="shareBindEvent(3)">
           <span class="sp4"><img src="../assets/img/icon/qqzone.png" alt=""/></span>
           <p>QQ空间</p>
-        </a>
-        <a
-            href="javascript:;" data-app="QQ" class="nativeShare qq" v-if="!isWeixin && isqqBrowser"
-            @click="shareBindEvent(4)"
-        >
-          <span class="sp5"><img src="../assets/img/icon/qq.png" alt=""/></span>
-          <p>QQ好友</p>
         </a>
         <a
             href="javascript:;" data-app="ewm" class="nativeShare ewm" @click="shareBindEvent(5)"
@@ -230,7 +230,7 @@
             return false;
           }
           if (typeof(window.ucweb) != "undefined") {
-            window.ucweb.startRequest("shell.page_share", [this.title, this.desc, this.url, to_app, "", "", ""]);
+            window.ucweb.startRequest && window.ucweb.startRequest("shell.page_share", [this.title, this.desc, this.url, to_app, "", "", ""]);
           } else {
             if (typeof(window.ucbrowser) != "undefined") {
               window.ucbrowser.web_share && window.ucbrowser.web_share.apply(null,[this.title,this.desc, this.url, to_app, "", "", ""]);

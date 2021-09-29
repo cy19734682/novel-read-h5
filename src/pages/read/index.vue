@@ -87,7 +87,7 @@
       },
       addToBookshelf() {
         if(JSON.stringify(this.userInfo) === "{}"){
-          this.$toast.fail("您还未登录，请先登录！");
+          this.$toast("您还未登录，请先登录！");
           return
         }
         this.followLoading = true

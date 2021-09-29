@@ -92,11 +92,11 @@ export default {
     },
     submitComment(){
       if(JSON.stringify(this.userInfo) === "{}"){
-        this.$toast.fail("您还未登录，请先登录！");
+        this.$toast("您还未登录，请先登录！");
         return
       }
       if(this.commentStr.trim() == ''){
-        this.$toast.fail("评论内容不能为空");
+        this.$toast("评论内容不能为空");
         return
       }
       let params ={
