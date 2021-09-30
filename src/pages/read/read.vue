@@ -323,6 +323,9 @@
           setting["isShwNight"] = this.setting.isShwNight
         }
         else if(type === 1){//更换背景颜色
+          if(this.setting.bgColor === val){
+            return
+          }
           this.setting.isShwNight = false
           this.setting.bgColor = val
           setting["isShwNight"] = this.setting.isShwNight
@@ -342,8 +345,10 @@
           this.initModes(true)
         }
         else if(type === 3){//翻页模式
+          if(this.setting.turnType === val){
+            return
+          }
           this.setting.turnType = val
-          let setting = JSON.parse(localStorage.getItem("setting")) || {}
           setting["turnType"] = this.setting.turnType
           this.initModes(true)
         }
@@ -522,7 +527,7 @@
               options.$scroller.scrollTop = options.scrollTop + scrollTop/100
             }
             else {
-              this.translateX += Math.round((moveNum*100 / stepNum)/100)
+              this.translateX += (moveNum*100 / stepNum)/100
             }
             if (window.requestAnimationFrame) {
               requestAnimationFrame(step)
@@ -618,8 +623,9 @@
   }
   .settSpan {
     height: 30px;
+    line-height: 30px;
     margin: 0 15px 0 5px;
-    padding: 2px 20px;
+    padding: 0 20px;
     font-size: 14px;
     min-width: 50px;
     text-align: center;
