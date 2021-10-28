@@ -128,6 +128,9 @@ export default {
   .comment_container {
     font-size: 14px;
     padding: 0 15px;
+    overflow: hidden;
+    word-wrap: break-word;
+    word-break: break-all;
   }
   .comment_container>div {
     border-bottom: 1px solid #eee;
