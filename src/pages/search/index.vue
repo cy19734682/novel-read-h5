@@ -125,6 +125,7 @@
             }
           }
           else {
+            this.bookList = [];
             this.refreshing = false;
             this.finished = true;
           }
