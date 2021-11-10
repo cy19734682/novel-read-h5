@@ -223,4 +223,7 @@
     align-items: center;
     color: #999;
   }
+  .van-tag{
+    margin-right: 5px;
+  }
 </style>
