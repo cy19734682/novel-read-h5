@@ -2,7 +2,7 @@
   <div style="padding-top: 46px">
     <van-nav-bar left-arrow @click-left="back" @click-right="searchBook" fixed class="searchBar">
       <template #title>
-        <van-search v-model="searchText" placeholder="请输入搜索关键词" right-icon="" left-icon="" @clear="cleanInput"/>
+        <van-search v-model="searchText" placeholder="请输入搜索关键词" right-icon="" left-icon=""/>
       </template>
       <template #right>
         <van-icon name="search" size="18"/>
@@ -68,7 +68,10 @@
       }
     },
     watch:{
-      searchText(){
+      searchText(val){
+        if(val === ""){
+          this.initSearchHistory()
+        }
         this.isLoadEnd = false
       }
     },
@@ -143,9 +146,6 @@
         // 将 loading 设置为 true，表示处于加载状态
         this.loading = true;
         this.onLoad();
-      },
-      cleanInput(){
-        this.initSearchHistory();
       },
       /**
        * 搜索过的条件存储到历史记录里面
