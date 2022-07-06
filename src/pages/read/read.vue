@@ -233,13 +233,17 @@
           console.log(err)
         })
       },
+      /**
+       * 加载章节
+       * @param isNew 是否是加载新的章节
+       * @param isPre 是否是加载上一页
+       */
       onLoad(isNew,isPre) {
         queryChapterPreOrNext({
           chapter_id: this.chapterId,
           novel_id: this.bookId,
         }).then(res => {
           if (res && res.code === 0 && res.data && res.data.length) {
-            this.chapterPre = {}
             this.chapterNext = {}
             if (isNew || this.chapters.length === 0) {//当刷新页面或只有一条数据时，锁定上一章
               this.replaceHistory(this.chapterId)
@@ -254,6 +258,7 @@
                 return e.id == this.chapterId
               })
               if (rIndex === 0) {//处于第一章
+                this.chapterPre = {}
                 this.chapter = res.data[0]
                 this.chapterNext = res.data[1]
                 this.chapterId = this.chapterNext.id
@@ -287,8 +292,8 @@
             this.initModes(false, isPre)//初始化阅读模式
             this.saveReadHistory()//保存阅读记录
             this.isLoading = false
-            this.loading = false
           }
+          this.loading = false
           this.loadEnd = false
         }, err => {
           this.loadEnd = false
@@ -296,6 +301,11 @@
         })
       },
       onRefresh() {
+        if (!(this.chapters && this.chapters.length > 0)) {
+          this.$toast("章节信息为空");
+          this.isLoading = false;
+          return
+        }
         if (!this.chapterPre.id) {
           this.$toast("已经是第一章了");
           this.isLoading = false;
@@ -424,7 +434,9 @@
       },
       initModes(isChange, isPre) {
         if (isChange && this.setting.turnType === 0) {
-          this.chapters = [this.chapter]
+          if(this.chapter.id){
+            this.chapters = [this.chapter]
+          }
         }
         else {
           this.$nextTick(() => {
@@ -682,7 +694,7 @@
     height: calc(100% - 40px);
   }
   .contentRow article{
-    padding-bottom: 150px;
+    padding-bottom: calc(100% - 40px);
     line-height: 1.8;
     text-align: justify;
   }
