@@ -52,7 +52,8 @@
         </div>
       </div>
       <div class="col-12 footer">
-        <p>Copyright © XXX</p>
+        <p>Copyright ©{{new Date().getFullYear()}} 渝州梦晚</p>
+        <p><a href="https://beian.miit.gov.cn">渝ICP备2021003421号-1</a></p>
       </div>
     </van-skeleton>
   </div>
@@ -155,13 +156,13 @@
     display: flex;
     align-items: center;
     justify-content: center;
+    flex-direction: column;
     height: 30px;
     position: relative;
-    bottom: 0;
-    left: 0;
+    margin: 10px 0;
   }
-
-  .footer p {
+  .footer p,
+  .footer p a{
     color: #999;
     font-size: 12px;
     text-align: center;
